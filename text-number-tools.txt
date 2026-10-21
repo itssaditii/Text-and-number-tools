@@ -1,0 +1,57 @@
+import re
+
+
+def count_words(sentence):
+    """Return the number of words in a sentence."""
+    return len(re.findall(r"\b[\w'-]+\b", sentence))
+
+
+def find_longest_word(sentence):
+    """Return the longest word in a sentence."""
+    words = re.findall(r"\b[\w'-]+\b", sentence)
+    return max(words, key=len) if words else "No words found"
+
+
+def reverse_sentence(sentence):
+    """Return the sentence in reverse character order."""
+    return sentence[::-1]
+
+    
+def is_prime(number):
+    """Return True if the number is prime, otherwise False."""
+    if number < 2:
+        return False
+
+    for divisor in range(2, int(number ** 0.5) + 1):
+        if number % divisor == 0:
+            return False
+
+    return True
+
+
+def main():
+    """Read user input and display the results."""
+    sentence = input("Enter a sentence: ")
+    number_input = input("Enter an integer to check for prime: ")
+
+    print("\n--- Sentence Analysis ---")
+    print(f"Word count: {count_words(sentence)}")
+    print(f"Longest word: {find_longest_word(sentence)}")
+    print(f"Reversed sentence: {reverse_sentence(sentence)}")
+
+    print("\n--- Prime Number Check ---")
+
+    try:
+        number = int(number_input)
+
+        if is_prime(number):
+            print(f"{number} is a prime number.")
+        else:
+            print(f"{number} is not a prime number.")
+
+    except ValueError:
+        print("Error: Please enter a valid integer.")
+
+
+if __name__ == "__main__":
+    main()
